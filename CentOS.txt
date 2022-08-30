@@ -1,0 +1,8 @@
+Restart PHP service
+
+systemctl restart php-fpm.service
+
+SELinux - TEMPORARY!! disable (fixed problems with Wordpress updates)
+
+sudo setenforce 0
+sestatus
