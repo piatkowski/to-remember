@@ -1,0 +1,7 @@
+Automatically translate POT file with "pomo"
+
+php pomo translate en pl ./path/to/lang.pot
+
+WP CLI to generate POT file
+
+wp i18n make-pot source-dir destination.pot
