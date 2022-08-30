@@ -1,0 +1,15 @@
+Bulk remove from SVN
+
+svn status | grep '!' | sed 's/^.* /svn remove /' | bash
+
+Bulk add to SVN
+
+svn status | grep '?' | sed 's/^.* /svn add /' | bash
+
+View changes
+
+svn stat
+
+Commit
+
+svn ci -m 'message'
