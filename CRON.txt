@@ -1,0 +1,5 @@
+Trigger external script without saving output
+
+wget -O /dev/null "http://url" >/dev/null 2>&1
+
+--no-check-certificate
