@@ -8,6 +8,12 @@ const Component = () => {
   
     const someHandler = (e) => {
       setValue(e.target.value);
+        
+      // argument as function if new state depends on previous state
+        
+        setValue((prevState) => {
+           //...
+        });
     }
     
     return <input onChange={someHandler} value={value} />
