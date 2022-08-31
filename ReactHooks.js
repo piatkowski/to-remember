@@ -107,3 +107,13 @@ return <input ref={inputRef} />
 return <SomeComponent ref={someRef} />
 //and then forward ref in Component
 const SomeComponent = React.forwardRef((props, ref) => {});
+
+
+
+/**
+*    React.memo - used when the Component returns the same DOM when props are the same. Performance optimization
+*/
+
+//IT DOES NOT WORK WITH FUNCTIONS IN PROPS (i.e. onClick={buttonHandler})
+//just wrap at the export
+export default React.memo(MyComponent);
