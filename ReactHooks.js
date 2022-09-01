@@ -9,11 +9,12 @@ const Component = () => {
     const someHandler = (e) => {
       setValue(e.target.value);
         
-      // argument as function if new state depends on previous state
-        
+        // argument as function if new state depends on previous state
         setValue((prevState) => {
-           //...
+           //... for example increment or decrement "value"
+           return prevState + 1;
         });
+       
     }
     
     return <input onChange={someHandler} value={value} />
@@ -117,3 +118,32 @@ const SomeComponent = React.forwardRef((props, ref) => {});
 //IT DOES NOT WORK WITH FUNCTIONS IN PROPS (i.e. onClick={buttonHandler})
 //just wrap at the export
 export default React.memo(MyComponent);
+
+
+
+/**
+*      useMemo - example
+*/
+import { useMemo } from 'react';
+
+const ListComponent = (props) => {
+     //some performance consuming operation
+    const sortedList = props.items.sort((a,b) => a-b);
+    console.log('ListComponent reevaluated');
+    //component is reevaluated and sort is executing every time
+    
+    //this will be memoed
+    const sortedList = useMemo(() => {
+        console.log('ListComponent: items sorted!");
+        return props.items.sort((a,b) => a-b);
+    }, [props.items]);
+};
+
+
+/**
+*   useCallback - prevent function recreation. Function is not saved with React.memo. Comparing different objects return false [1,2,3] === [1,2,3] //false
+*/
+import { useCallback } from 'react';
+const someHanlder = useCallback(() => {
+    if(someValue === ...) { /* ... */ }
+}, [someValue]); //array of dependencies
