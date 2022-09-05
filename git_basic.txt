@@ -1,0 +1,68 @@
+git init        - initialize repository
+
+git status      -  status of Staging Area
+git log         - log commits
+
+git add file1 file2     - add files to Staging Area
+
+git commit -m "Message"     - commit from Staging Area to Repository
+
+git config --global user.email "adres@email.pl"
+git config --global user.name "My Name"
+
+
+git checkout 455af07a79f9c6410ec643fcbbbed17bfeda83a1   - checkout commit
+git checkout master                                     - checkout latest commit in branch
+git checkout branch-name        - switch to other branch
+
+git branch                      - display available branches
+git branch new-branch           - create new branch
+git checkout -b new-branch      - create new branch and switch to that branch
+
+git switch branch-name          - switch to other branch
+git switch -c new-branch        - create new branch
+
+Merging branches to master
+-------------------------------
+git checkout master     1. Go to master
+git merge branch-name   2. Merge branch-name to master
+
+HEAD - pointer to the latest commit in branch (checked out)
+Detached HEAD - when checking out oler commit
+
+
+git ls-files    - list files in commit
+
+
+Removing, Restoting
+---------------------
+
+git rm filename             - delete file (in Staging Area)
+
+git checkout filename.txt   - restore (unstaged file) modified files in Staging Area (restore to the HEAD commit)
+git checkout .              - restore all unstanged files
+git restore filename.txt    - restore unstaged files
+
+git clean -dn               - remove untracked files (-n preview)
+git clean -df               - force remove untracked files
+
+
+git restore --staged filename.txt       - undo staged changes (after git add)
+git checkout filename.txt      - restore file from HEAD
+
+git reset - remove commits
+-----------------------------
+git reset --soft HEAD~1         - go back to the previous (-1) commit, files not deleted (SA and WD)
+git reset HEAD~1                - as above, file deleted from Staging Area, but keep in WD
+git reset --hard HEAD~1         - remove commit, files from Staging Area and from Working Directory
+
+Remove branches 
+--------------------
+git branch -D branch-name       - force delete branch
+
+
+.gitignore
+-------------
+*.log           - all *.log files
+!test.log       - but not test.log
+dir/*           - all directory with subfiles
