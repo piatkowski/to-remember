@@ -1,3 +1,7 @@
+----------------
+master ==> main
+----------------
+
 git init        - initialize repository
 
 git status      -  status of Staging Area
@@ -144,3 +148,52 @@ git show 1.0
 git checkout 1.0                    - checkout tag (detached HEAD)
 git tag -d 1.0                      - remove tag
 git tag -a 2.0 -m "Latest version"  - annotation
+
+
+
+
+Git Remote
+--------------
+
+git remote add origin https://...
+git push -u origin master  (set upstream co connect local and remote branch)
+
+git branch -a   (list all branches \w remotes)
+git branch -r   (list remote branches)
+
+git ls-remote   (list branches from remote origin)
+
+git fetch origin            (fetch data from remote repo)
+git pull origin branch      (pull works if we have connected branches, use fetch first to get new branch from remote repo)
+
+pull = fetch + merge
+
+
+Local Tracking branch
+
+git branch --track feature-remote  origin/feature-remote    (connect local and remote branch to track changes)
+
+git branch -vv      (show local branches and theirs remote branches)
+
+
+Git Cloning
+-----------
+
+git clone https://...
+
+git branch -vv  (missing local tracking branches)
+
+git branch --track origin/feature remotes/origin/feature (to add local tracking branch)
+
+
+Remove remote branches
+------------------------
+
+git push origin --delete branch
+
+
+Remove remote commit
+---------------------
+
+git reset --hard HEAD~1
+git push --force origin master
