@@ -1,0 +1,54 @@
+Apache
+--------
+
+1. Virtual Hosts
+------------------
+
+[/etc/hosts]
+
+127.0.0.1   site.local
+
+
+[httpd.conf - uncomment]
+
+Include /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf
+
+
+[extras/httpd-vhosts.conf]
+
+<VirtualHost *:80>
+    DocumentRoot /Applications/MAMP/htdocs
+    ServerName localhost
+</VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot "/Users/username/Sites/mysite"
+    ServerName site.local
+</VirtualHost>
+
+
+2. HTTPS on Localhost
+-----------------------
+
+[generate self-signed certificate]
+
+openssl genrsa -des3 -out server.key 2048
+openssl req -new -key server.key -out server.csr
+openssl x509 -req -days 1825 -in server.csr -signkey server.key -out server.crt
+cp server.key server.tmp
+openssl rsa -in server.tmp -out server.key
+
+
+[httpd.conf - uncomment]
+
+Include /Applications/MAMP/conf/apache/extra/httpd-ssl.conf
+
+
+[extras/httpd-ssl.conf]
+
+<VirtualHost *:443>
+        SSLEngine on
+        SSLCertificateFile /Applications/MAMP/conf/apache/server.crt
+        SSLCertificateKeyFile /Applications/MAMP/conf/apache/server.key
+        DocumentRoot "/Users/username/Sites/mysite"
+</VirtualHost>
