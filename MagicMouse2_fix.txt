@@ -1,0 +1,25 @@
+Reset NVRAM PRAM (Hold Option+Cmd+P+R on boot)
+
+Unpair Magic Mouse 2 in BT Settings
+Remove Magic Mouse 2 in BT Settings
+
+Terminal: sudo pkill bluetoothd
+
+Remove files under /Library/Preferences
+com.apple.Bluetooth.plist
+com.apple.AppleMultitouchMouse.plist
+com.apple.driver.AppleBluetoothMultitouch.mouse.plist
+com.apple.driver.AppleHIDMouse.plist
+
+Reboot
+
+Reset MM2:
+1. Turn MM2 off
+2. Hold mouse button and turn on, hold for 5-10 s
+3. Release Mouse button
+
+Open Magic Mouse 2
+Disconnect Touch Sensor
+Disconnect Battery
+
+Done.
