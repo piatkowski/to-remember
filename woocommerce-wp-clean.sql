@@ -14,3 +14,10 @@ WHERE wp.ID IS NULL;
 
 DELETE FROM wp_actionscheduler_actions;
 DELETE FROM wp_wc_order_stats;
+
+DELETE FROM wp_woocommerce_order_itemmeta;
+DELETE FROM wp_wc_orders_meta;
+DELETE FROM wp_comments;
+DELETE FROM wp_woocommerce_order_items;
+DELETE FROM wp_wc_order_addresses;
+DELETE FROM wp_wc_orders;
