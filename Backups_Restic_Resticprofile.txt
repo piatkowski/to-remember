@@ -1,0 +1,66 @@
+# 1. Mount /dev/sda1 to /media/ssd (automount)
+blkid
+```
+/dev/sda1: UUID="xxxx-xxxx-xxxx-xxxx"
+```
+
+sudo nano /etc/fstab
+```
+UUID=xxxx-xxxx-xxxx-xxxx /media/ssd ext4 defaults 0 2
+```
+
+sudo mount -a
+
+# 2. Initialize repository
+
+cd /media/ssd
+mkdir resticprofile
+cd resticprofile
+
+touch ./password
+echo "MySecretPasswd$4" > ./password
+
+nano profiles.yaml
+
+```yaml
+version: "1"
+
+global:
+  scheduler: systemd
+
+default:
+  repository: "local:./repository"
+  password-file: "password"
+
+  backup:
+    exclude-caches: true
+    verbose: true
+    source:
+      - "/home"
+    schedule: "hourly"
+    schedule-permission: system
+    schedule-priority: background
+    schedule-log: ./backup.log
+    schedule-after-network-online: true
+
+  retention:
+    before-backup: false
+    after-backup: true
+    keep-hourly: 6
+    keep-daily: 14
+    prune: true
+```
+
+sudo ~/bin/resticprofile init
+
+# 3. Schedule backups
+
+sudo ~/bin/resticprofile schedule  # or unschedule --all
+
+# 4. Access respository and restore files
+
+sudo restic -r ./repository -p ./password snapshots
+sudo restic -r ./repository -p ./password ls latest
+sudo restic -r ./repository -p ./password restore --target ~/restored --verbose=2 latest
+// latest or snapshot ID
+    
